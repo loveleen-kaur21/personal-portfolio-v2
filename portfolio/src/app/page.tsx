@@ -1,16 +1,15 @@
 "use client";
 
 import { TypeAnimation } from 'react-type-animation';
-import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
       <div className="flex flex-col items-center justify-center text-center">
-        <h2 className="text-2xl text-gray-600 mb-8">Let's build something together.</h2>
+        <h2 className="text-2xl text-gray-600 mb-8">Let&apos;s build something together.</h2>
         <h1 className="text-6xl font-bold mb-4">
-          Hi, I'm <span className="bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">Loveleen Kaur</span>
+          Hi, I&apos;m <span className="bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">Loveleen Kaur</span>
         </h1>
         <p className="text-lg mb-8">
           <TypeAnimation

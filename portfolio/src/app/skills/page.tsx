@@ -48,7 +48,7 @@ export default function Skills() {
 
             {/* Skills Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                {skillCategories.map((category, index) => (
+                {skillCategories.map((category) => (
                     <div 
                         key={category.category} 
                         className={`relative overflow-hidden rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 bg-gray-800/50 border border-gray-700/50 backdrop-blur-sm`}

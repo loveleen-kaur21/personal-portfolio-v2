@@ -12,18 +12,18 @@ export default function About() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div>
                     <p className="text-lg mb-6">
-                        I'm a software engineer passionate about building <strong>robust</strong>, scalable applications that solve real-world problems through clean code and thoughtful architecture. My favorite work lies at the intersection of backend systems and user experience, creating solutions that are both technically sound and genuinely useful.</p>
+                        I&apos;m a software engineer passionate about building <strong>robust</strong>, scalable applications that solve real-world problems through clean code and thoughtful architecture. My favorite work lies at the intersection of backend systems and user experience, creating solutions that are both technically sound and genuinely useful.</p>
                     <p className="text-lg mb-6">
-                        Currently, I'm focused on <strong>Full-Stack Development</strong>, specializing in creating seamless digital experiences from database to user interface. I love tackling complex problems and transforming them into elegant, maintainable solutions that users actually want to interact with.
+                        Currently, I&apos;m focused on <strong>Full-Stack Development</strong>, specializing in creating seamless digital experiences from database to user interface. I love tackling complex problems and transforming them into elegant, maintainable solutions that users actually want to interact with.
                     </p>
 
                     <p className="text-lg mb-6">
-                        My journey began at <strong><u><a href="https://basecampcodingacademy.org/" className="text-pink-400 hover:text-orange-400">Base Camp Coding Academy</a></u></strong>, an exclusive year-long program offering recent high school graduates a fast-track path to becoming software engineers with a full scholarship. The academy wasn't just about learning to code; it was about mastering the art of continuous learning as a full-stack developer and developing strong problem-solving skills. There, I discovered my passion for turning ideas into functional, impactful software.
+                        My journey began at <strong><u><a href="https://basecampcodingacademy.org/" className="text-pink-400 hover:text-orange-400">Base Camp Coding Academy</a></u></strong>, an exclusive year-long program offering recent high school graduates a fast-track path to becoming software engineers with a full scholarship. The academy wasn&apos;t just about learning to code; it was about mastering the art of continuous learning as a full-stack developer and developing strong problem-solving skills. There, I discovered my passion for turning ideas into functional, impactful software.
                     </p>
 
                     <div className="text-lg mb-4">
-                        In my spare time, I'm usually cooking, shopping, drawing, or building{' '}
-                        <span 
+                        In my spare time, I&apos;m usually cooking, shopping, drawing, or building{' '}
+                        <span
                             className="relative inline-block cursor-pointer text-orange-400 hover:text-pink-400 transition-colors duration-200"
                             onMouseEnter={() => setShowLegos(true)}
                             onMouseLeave={() => setShowLegos(false)}

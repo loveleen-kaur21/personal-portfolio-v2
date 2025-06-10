@@ -59,8 +59,8 @@ export default function Contact() {
                     Get in <span className="italic font-light">Touch</span>
                 </h1>
                 <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
-                    Have a project in mind or just want to chat? I'd love to hear from you. 
-                    Let's discuss how we can bring your ideas to life. ✨
+                    Have a project in mind or just want to chat? I&apos;d love to hear from you. 
+                    Let&apos;s discuss how we can bring your ideas to life. ✨
                 </p>
             </div>
 
@@ -219,7 +219,7 @@ export default function Contact() {
                         {/* Status Messages */}
                         {submitStatus === 'success' && (
                             <div className="text-green-400 text-center p-3 bg-green-400/10 rounded-lg border border-green-400/30">
-                                ✅ Message sent successfully! I'll get back to you soon.
+                                ✅ Message sent successfully! I&apos;ll get back to you soon.
                             </div>
                         )}
                         
