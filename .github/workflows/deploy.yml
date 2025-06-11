@@ -46,6 +46,15 @@ jobs:
     - name: Build with Next.js
       run: npm run build
       
+    - name: List build output (debug)
+      run: |
+        echo "Checking for out directory:"
+        ls -la
+        echo "Checking .next contents:"
+        ls -la .next/ || echo "No .next directory"
+        echo "Looking for exported files:"
+        find . -name "index.html" -type f 2>/dev/null || echo "No index.html found"
+      
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
