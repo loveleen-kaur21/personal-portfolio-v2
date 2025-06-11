@@ -46,10 +46,33 @@ jobs:
     - name: Build with Next.js
       run: npm run build
       
+    - name: Debug: Check what was built
+      run: |
+        echo "=== Root directory ==="
+        ls -la
+        echo "=== .next directory ==="
+        find .next -name "*.html" -type f | head -10
+        echo "=== Looking for exported static files ==="
+        find . -maxdepth 3 -name "index.html" -type f 2>/dev/null
+        
+    - name: Create proper static export
+      run: |
+        # Create out directory and copy static files
+        mkdir -p out
+        # Copy static assets
+        cp -r public/* out/ 2>/dev/null || true
+        # Copy built HTML files from server directory
+        find .next -name "*.html" -exec cp {} out/ \; 2>/dev/null || true
+        # Copy static assets from .next
+        cp -r .next/static out/_next/static 2>/dev/null || true
+        # List what we created
+        echo "=== Created out directory ==="
+        ls -la out/
+        
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: ./.next/server/app
+        path: ./out
 
   deploy:
     environment:
