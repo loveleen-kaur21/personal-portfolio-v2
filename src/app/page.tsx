@@ -8,7 +8,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
       <div className="flex flex-col items-center justify-center text-center">
         <h2 className="text-2xl text-gray-600 mb-8">Let&apos;s build something together.</h2>
-        <h1 className="text-6xl font-bold mb-4">
+        <h1 className="text-5xl md:text-6xl font-light text-white mb-6">
           Hi, I&apos;m <span className="bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">Loveleen Kaur</span>
         </h1>
         <p className="text-lg mb-8">

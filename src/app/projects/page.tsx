@@ -46,7 +46,6 @@ const ProjectCard = ({ project, borderColor, bgColor }: ProjectCardProps) => {
             <div className="w-16 h-16 mx-auto mb-2 bg-gray-200 rounded-lg flex items-center justify-center">
                 📱
             </div>
-            Project Screenshot
             </div>
         )}
         </div>
@@ -116,6 +115,41 @@ export default function ProjectsPage() {
 
     const projects = [
         {
+            title: "International Day Pass",
+            description: "Providing customers with a new feature to call from anywhere in the world.",
+            techStack: ["Java", "Angular", "SCSS", "HTML"],
+            year: "",
+            image: "",
+        },
+        {
+            title: "Lower Credit Offers",
+            description: "",
+            techStack: [],
+            year: "",
+            image: "/images/low-credit-offers.png",
+        },
+        {
+            title: "Prepaid Insurance",
+            description: "",
+            techStack: [],
+            year: "",
+            image: "",
+        },
+        {
+            title: "Same Day Renewal",
+            description: "",
+            techStack: [],
+            year: "",
+            image: "",
+        },
+        {
+            title: "Business-2-Business Wireless Cart",
+            description: "",
+            techStack: [],
+            year: "",
+            image: "",
+        },
+        {
             title: "Shifty",
             subtitle: "Automated Nurse's Schedule Generator",
             description: "Shifty is a web application designed to automatically create a two-month schedule of shifts for a medical staff given specific requirements for each employee",
@@ -168,48 +202,6 @@ export default function ProjectsPage() {
             image: "/images/magic-to-do.png",
             github: "https://github.com/BaseCampCoding/fundamentals-of-programming-pt-1-unit-project-loveleen-hardaway",
         },
-        {
-            title: "VoWifi",
-            description: "",
-            techStack: [],
-            year: "",
-            image: "",
-        },
-        {
-            title: "International Day Pass",
-            description: "",
-            techStack: [],
-            year: "",
-            image: "",
-        },
-        {
-            title: "Lower Credit Offers",
-            description: "",
-            techStack: [],
-            year: "",
-            image: "/images/low-credit-offers.png",
-        },
-        {
-            title: "Prepaid Insurance",
-            description: "",
-            techStack: [],
-            year: "",
-            image: "",
-        },
-        {
-            title: "Same Day Renewal",
-            description: "",
-            techStack: [],
-            year: "",
-            image: "",
-        },
-        {
-            title: "Business-2-Business Wireless Cart",
-            description: "",
-            techStack: [],
-            year: "",
-            image: "",
-        }
     ];
 
     const cardColors = [
