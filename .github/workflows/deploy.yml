@@ -58,11 +58,20 @@ jobs:
     - name: Create proper static export
       run: |
         mkdir -p out
-        cp -r public/* out/ || true
+        mkdir -p out/_next
+        # Copy public assets (images, favicon, etc.)
+        if [ -d "public" ]; then cp -r public/* out/; fi
+        # Copy Next.js static assets
+        if [ -d ".next/static" ]; then cp -r .next/static out/_next/; fi
+        # Copy built HTML files
         find .next -name "*.html" -exec cp {} out/ \; || true
-        cp -r .next/static out/_next/static || true
+        # Copy any CSS and JS files
+        find .next -name "*.css" -exec cp {} out/ \; || true
+        find .next -name "*.js" -exec cp {} out/ \; || true
         echo "=== Created out directory ==="
         ls -la out/
+        echo "=== Checking _next directory ==="
+        ls -la out/_next/ || echo "No _next directory"
         
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
