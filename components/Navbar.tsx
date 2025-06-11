@@ -14,7 +14,7 @@ export default function Navbar() {
         { name: 'Projects', path: '/projects' },
         { name: 'Skills', path: '/skills' },
         { name: 'Contact', path: '/contact' },
-        { name: 'Resume', path: '/resume.pdf', external: true },
+        { name: 'Resume', path: '/Loveleen_Kaur_Resume.pdf', external: true },
     ];
 
     return (
