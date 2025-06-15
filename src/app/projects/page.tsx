@@ -62,11 +62,6 @@ const ProjectCard = ({ project, borderColor, bgColor }: ProjectCardProps) => {
                     C Spire Project{project.requiresLogin ? " • Login Required" : ""}
                 </p>
             )}
-            {project.projectType==="School" && (
-                <p className="text-white text-opacity-70 text-sm font-medium">
-                    School Project
-                </p>
-            )}
         </div>
 
         {/* Tech Stack Badges */}
@@ -147,7 +142,7 @@ export default function ProjectsPage() {
         },
         {
             title: "Multi-Factor Authentication",
-            description: "Providing customers with a multi-factor authentication method for logging into accounts. This project required a setup of a multi-authentication page where the customer has the ability to select a method and our application proceeds to verify the user.",
+            description: "",
             techStack: ["Java", "Angular", "Sass", "HTML", "RESTful APIs", "JSP", "JavaScript"],
             year: "",
             image: "/images/mfa4.jpg",
@@ -156,7 +151,7 @@ export default function ProjectsPage() {
         },
         {
             title: "Same Day Renewal",
-            description: "A new initiative to allow customers to pick their own due dates. This project entailed creating a dynamic calendar and proceeding to show prepaid customers proration amounts due on any day chosen. Furthermore, customer must pay a proration amount if we consider an amount is due.",
+            description: "",
             techStack: ["Java", "Angular", "Sass", "HTML", "RESTful APIs"],
             year: "",
             image: "/images/SDR.png",
@@ -174,7 +169,7 @@ export default function ProjectsPage() {
         },
         {
             title: "Lower Credit Offers",
-            description: "Customers who are unable to finance their orders were offered full-priced devices with a specific discount. This is targeted to customers who do not pass our credit check for financing. Upon credit check, a popup is shown with specific deals that would meet their needs.",
+            description: "",
             techStack: ["Java", "Angular", "Sass", "HTML", "RESTful APIs"],
             year: "",
             image: "/images/low-credit-offers.png",
@@ -182,7 +177,7 @@ export default function ProjectsPage() {
         },
         {
             title: "Voice Over WiFI",
-            description: "My starter project at C Spire to allow customers to add Voice Over WiFi calling as a feature to their lines. Otherwise, permanently require it. New lines must sign a Voice Over WiFi acknowledgement agreement that we produced on WEB.",
+            description: "",
             techStack: ["Java", "Angular", "Sass", "HTML", "RESTful APIs", "JSP", "JavaScript"],
             year: "",
             image: "/images/vowifi.png",
@@ -190,7 +185,7 @@ export default function ProjectsPage() {
         },
         {
             title: "Shifty",
-            subtitle: "Automated Nurses Schedule Generator",
+            subtitle: "Automated Nurse's Schedule Generator",
             description: "Shifty is a web application designed to automatically create a two-month schedule of shifts for a medical staff given specific requirements for each employee",
             techStack: ["Spring", "Java", "Javascript", "CSS", "HTML"],
             year: "2021",
@@ -305,7 +300,7 @@ export default function ProjectsPage() {
 
         {/* Navigation with Animation */}
         <ScrollAnimationWrapper animation="fadeUp" delay={400}>
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
                 <button 
                     onClick={goToPrevious}
                     disabled={currentPage === 1}
@@ -321,7 +316,7 @@ export default function ProjectsPage() {
                     Prev
                 </button>
 
-                <div className="text-gray-500">
+                <div className="text-gray-500 text-center text-sm sm:text-base order-last sm:order-none">
                     Showing {startIndex + 1}-{Math.min(endIndex, projects.length)} of {projects.length} projects
                 </div>
 
