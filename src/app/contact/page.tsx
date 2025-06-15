@@ -59,8 +59,8 @@ export default function Contact() {
                     Get in <span className="italic font-light">Touch</span>
                 </h1>
                 <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
-                    Have a project in mind or just want to chat? I&apos;d love to hear from you. 
-                    Let&apos;s discuss how we can bring your ideas to life. ✨
+                    Open to new opportunities and excited to contribute to innovative projects! 
+                    Whether you&apos;re building the next big thing or improving existing systems, I&apos;d love to discuss how we can work together. ✨
                 </p>
             </div>
 
@@ -102,7 +102,7 @@ export default function Contact() {
                                 <div>
                                     <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Phone</p>
                                     <a href="tel:+1234567890" className="text-white hover:text-pink-400 transition-colors duration-200">
-                                        (123) 456-7890
+                                        (601) 940-6033
                                     </a>
                                 </div>
                             </div>

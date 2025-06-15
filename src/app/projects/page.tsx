@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import { ScrollAnimationWrapper } from '../../../components/ScrollAnimationWrapper';
 
 interface ProjectCardProps {
     project: {
@@ -14,7 +15,9 @@ interface ProjectCardProps {
         image?: string;
         github?: string;
         liveDemo?: string | null;
-        cspireProject?: boolean;
+        company?: string,
+        projectType?: string;
+        requiresLogin?: boolean
     };
     borderColor: string;
     bgColor: string;
@@ -22,6 +25,7 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project, borderColor, bgColor }: ProjectCardProps) => {
     const [isHovered, setIsHovered] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(false);
 
     return (
     <div
@@ -51,12 +55,19 @@ const ProjectCard = ({ project, borderColor, bgColor }: ProjectCardProps) => {
         </div>
 
         {/* Project Title */}
-        <h3 className="text-2xl font-bold text-white mb-4">{project.title}</h3>
-        {project.subtitle && (
-            <h4 className="text-lg font-medium text-white text-opacity-80 mb-4">
-                {project.subtitle}
-            </h4>
-        )}
+        <div className="mb-4">
+            <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
+            {project.projectType==="C Spire" && (
+                <p className="text-white text-opacity-70 text-sm font-medium">
+                    C Spire Project{project.requiresLogin ? " • Login Required" : ""}
+                </p>
+            )}
+            {project.projectType==="School" && (
+                <p className="text-white text-opacity-70 text-sm font-medium">
+                    School Project
+                </p>
+            )}
+        </div>
 
         {/* Tech Stack Badges */}
         <div className="flex flex-wrap gap-2 mb-4">
@@ -71,10 +82,20 @@ const ProjectCard = ({ project, borderColor, bgColor }: ProjectCardProps) => {
             ))}
         </div>
 
-        {/* Project Description */}
-            <p className="text-white text-opacity-90 mb-6 line-clamp-3">
-            {project.description}
-        </p>
+        {/* Project Description - Expandable */}
+        <div className="mb-6">
+            <p className={`text-white text-opacity-90 transition-all duration-300 ${isExpanded ? '' : 'line-clamp-3'}`}>
+                {project.description}
+            </p>
+            {project.description.length > 150 && (
+                <button 
+                    onClick={() => setIsExpanded(!isExpanded)}
+                    className="text-white text-opacity-60 text-sm hover:text-opacity-80 mt-2 transition-all duration-200 hover:underline cursor-pointer"
+                >
+                    {isExpanded ? 'Show less' : 'Read more'}
+                </button>
+            )}
+        </div>
 
         {/* Year */}
             <div className="text-white text-opacity-80 text-lg font-semibold mb-4">
@@ -83,26 +104,27 @@ const ProjectCard = ({ project, borderColor, bgColor }: ProjectCardProps) => {
 
         {/* Action Buttons */}
         <div className="flex gap-3">
-        {project.liveDemo && (
-            <Link
-            href={project.liveDemo}
-            className="flex-1 bg-white text-gray-800 py-2 px-4 rounded-lg font-medium text-center hover:bg-gray-100 transition-colors"
-            target="_blank"
-            >
-            Live Demo
-            </Link>
-        )}
-        {project.github && (
-            <Link
-            href={project.github}
-            className="flex items-center justify-center w-12 h-10 bg-white bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-all"
-            target="_blank"
-            >
-            <svg className="w-6 h-6" style={{ color: '#0f1419' }} fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-            </svg>
-            </Link>
-        )}
+            {project.liveDemo && (
+                <Link
+                    href={project.liveDemo}
+                    className="flex-1 bg-white text-gray-800 py-2 px-4 rounded-lg font-medium text-center hover:bg-gray-100 transition-colors"
+                    target="_blank"
+                >
+                View
+                </Link>
+            )}
+
+            {project.github && (
+                <Link
+                    href={project.github}
+                    className="flex items-center justify-center w-12 h-10 bg-white bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-all"
+                    target="_blank"
+                >
+                <svg className="w-6 h-6" style={{ color: '#0f1419' }} fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                </Link>
+            )}
         </div>
     </div>
     );
@@ -115,48 +137,66 @@ export default function ProjectsPage() {
 
     const projects = [
         {
-            title: "International Day Pass",
-            description: "Providing customers with a new feature to call from anywhere in the world.",
-            techStack: ["Java", "Angular", "SCSS", "HTML"],
+            title: "Business-2-Business Wireless Cart",
+            description: "A complete redesign of B2B wireless customer flows for purchasing and orders. This project's main focus is transforming a legacy JSP application into a modern web application while enhancing the customer flow.",
+            techStack: ["Java", "Angular", "Sass", "HTML", "RESTful APIs", "JSP", "JavaScript"],
             year: "",
-            image: "",
+            image: "/images/B2B_cart.png",
+            projectType: "C Spire",
+            requiresLogin: true
         },
         {
-            title: "Lower Credit Offers",
-            description: "",
-            techStack: [],
+            title: "Multi-Factor Authentication",
+            description: "Providing customers with a multi-factor authentication method for logging into accounts. This project required a setup of a multi-authentication page where the customer has the ability to select a method and our application proceeds to verify the user.",
+            techStack: ["Java", "Angular", "Sass", "HTML", "RESTful APIs", "JSP", "JavaScript"],
             year: "",
-            image: "/images/low-credit-offers.png",
-        },
-        {
-            title: "Prepaid Insurance",
-            description: "",
-            techStack: [],
-            year: "",
-            image: "",
+            image: "/images/mfa4.jpg",
+            projectType: "C Spire",
+            requiresLogin: true
         },
         {
             title: "Same Day Renewal",
-            description: "",
-            techStack: [],
+            description: "A new initiative to allow customers to pick their own due dates. This project entailed creating a dynamic calendar and proceeding to show prepaid customers proration amounts due on any day chosen. Furthermore, customer must pay a proration amount if we consider an amount is due.",
+            techStack: ["Java", "Angular", "Sass", "HTML", "RESTful APIs"],
             year: "",
-            image: "",
+            image: "/images/SDR.png",
+            liveDemo: "https://www.cspire.com/web/wireless/same-day-renewal?srsltid=AfmBOop8xrXuDtPgRXDImmQTclCI47oXvm1sl70yEJMIPBhh0HkknKe0",
+            projectType: "C Spire"
         },
         {
-            title: "Business-2-Business Wireless Cart",
-            description: "",
-            techStack: [],
+            title: "International Day Pass",
+            description: "Providing customers with a new feature to call from anywhere in the world.",
+            techStack: ["Java", "Angular", "Sass", "HTML", "RESTful APIs"],
             year: "",
-            image: "",
+            image: "/images/Internation_Day_Pass_2.png",
+            liveDemo: "https://www.cspire.com/web/wireless/international-services-home?adobe_mc_sdid=SDID%3D358295B1D6E39994-487173F9BD4420B5%7CMCORGID%3D85279F01585CF4FA0A495CC3%40AdobeOrg%7CTS%3D1716169357&utm_source=google&utm_medium=SEM&utm_campaign=CSPR_Wireless_NB_Postpaid&gad_source=1&gad_campaignid=16473370957&gbraid=0AAAAADO81Xn4GuCCFMgH58X3ALzTLui84&gclid=Cj0KCQjw0qTCBhCmARIsAAj8C4bowFPmI8aKgKIiVX0z3l3uUK4j4H65gA_qYYU0ys79Zb7aVDzWIAQaAlyCEALw_wcB",
+            projectType: "C Spire"
+        },
+        {
+            title: "Lower Credit Offers",
+            description: "Customers who are unable to finance their orders were offered full-priced devices with a specific discount. This is targeted to customers who do not pass our credit check for financing. Upon credit check, a popup is shown with specific deals that would meet their needs.",
+            techStack: ["Java", "Angular", "Sass", "HTML", "RESTful APIs"],
+            year: "",
+            image: "/images/low-credit-offers.png",
+            projectType: "C Spire"
+        },
+        {
+            title: "Voice Over WiFI",
+            description: "My starter project at C Spire to allow customers to add Voice Over WiFi calling as a feature to their lines. Otherwise, permanently require it. New lines must sign a Voice Over WiFi acknowledgement agreement that we produced on WEB.",
+            techStack: ["Java", "Angular", "Sass", "HTML", "RESTful APIs", "JSP", "JavaScript"],
+            year: "",
+            image: "/images/vowifi.png",
+            projectType: "C Spire"
         },
         {
             title: "Shifty",
-            subtitle: "Automated Nurse's Schedule Generator",
+            subtitle: "Automated Nurses Schedule Generator",
             description: "Shifty is a web application designed to automatically create a two-month schedule of shifts for a medical staff given specific requirements for each employee",
             techStack: ["Spring", "Java", "Javascript", "CSS", "HTML"],
             year: "2021",
             image: "/images/shifty.png",
             github: "https://github.com/loveleen-kaur21/capstoneProject-joe-loveleen",
+            projectType: "School"
         },
         {
             title: "MEET",
@@ -166,6 +206,7 @@ export default function ProjectsPage() {
             year: "2021",
             image: "/images/mbc.png",
             github: "https://github.com/loveleen-kaur21/mbcwebappSPRING",
+            projectType: "School"
         },
         {
             title: "GitADate",
@@ -174,6 +215,7 @@ export default function ProjectsPage() {
             year: "2021",
             image: "/images/gitadate.jpg",
             github: "https://github.com/loveleen-kaur21/DatingAppJS",
+            projectType: "School",
             liveDemo: null
         },
         {
@@ -183,7 +225,8 @@ export default function ProjectsPage() {
             year: "2021",
             image: "/images/Reservme2.png",
             github: "https://github.com/BaseCampCoding/unit-project-2-loveleen-dylan/",
-            liveDemo: null
+            liveDemo: null,
+            projectType: "School"
         },
         {
             title: "F.A.C.T Prototype",
@@ -192,7 +235,8 @@ export default function ProjectsPage() {
             year: "2021",
             image: "/images/fact.png",
             github: "https://github.com/loveleen-kaur21/FACT-Prototype",
-            liveDemo: "https://fact-prototype.herokuapp.com"
+            liveDemo: "https://fact-prototype.herokuapp.com",
+            projectType: "School"
         },
         {
             title: "Magic To-Do",
@@ -201,6 +245,7 @@ export default function ProjectsPage() {
             year: "2020",
             image: "/images/magic-to-do.png",
             github: "https://github.com/BaseCampCoding/fundamentals-of-programming-pt-1-unit-project-loveleen-hardaway",
+            projectType: "School"
         },
     ];
 
@@ -226,65 +271,76 @@ export default function ProjectsPage() {
     };
 
     return (
-    <div className="min-h-screen py-16">
+    <div className="min-h-screen py-16 flex items-center justify-center p-12 md:p-24" style={{minHeight: 'calc(100vh - 80px)'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-light text-white mb-6">
-            My Work
-            </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            A collection of projects showcasing my journey in software development.
-            </p>
-        </div>
+        
+        {/* Header Section with Animation */}
+        <ScrollAnimationWrapper animation="fadeIn">
+            <div className="text-center mb-16">
+                <h1 className="text-5xl md:text-6xl font-light text-white mb-6">
+                My Work
+                </h1>
+                <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                A collection of projects showcasing my journey in software development.
+                </p>
+            </div>
+        </ScrollAnimationWrapper>
 
-        {/* Projects Grid */}
+        {/* Projects Grid with Staggered Animations */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {currentProjects.map((project, index) => (
-                <ProjectCard
-                    key={startIndex + index}
-                    project={project}
-                    borderColor={cardColors[index % cardColors.length].border}
-                    bgColor={cardColors[index % cardColors.length].bg}
-                />
+                <ScrollAnimationWrapper 
+                    key={`${startIndex + index}-${currentPage}`} // Added currentPage to force re-animation on page change
+                    animation="fadeUp"
+                    delay={index * 150} // Stagger animations by 150ms
+                >
+                    <ProjectCard
+                        project={project}
+                        borderColor={cardColors[index % cardColors.length].border}
+                        bgColor={cardColors[index % cardColors.length].bg}
+                    />
+                </ScrollAnimationWrapper>
             ))}
         </div>
 
-        {/* Navigation */}
-        <div className="flex justify-between items-center">
-            <button 
-                onClick={goToPrevious}
-                disabled={currentPage === 1}
-                className={`flex items-center gap-2 transition-colors ${
-                    currentPage === 1
-                        ? 'text-gray-400 cursor-not-allowed'
-                        : 'text-gray-600 hover:text-gray-800 cursor-pointer'  // ← Added cursor-pointer
-                }`}
-            >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-                Prev
-            </button>
+        {/* Navigation with Animation */}
+        <ScrollAnimationWrapper animation="fadeUp" delay={400}>
+            <div className="flex justify-between items-center">
+                <button 
+                    onClick={goToPrevious}
+                    disabled={currentPage === 1}
+                    className={`flex items-center gap-2 transition-colors ${
+                        currentPage === 1
+                            ? 'text-gray-400 cursor-not-allowed'
+                            : 'text-gray-600 hover:text-gray-800 cursor-pointer'
+                    }`}
+                >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                    Prev
+                </button>
 
-            <div className="text-gray-500">
-                Showing {startIndex + 1}-{Math.min(endIndex, projects.length)} of {projects.length} projects
+                <div className="text-gray-500">
+                    Showing {startIndex + 1}-{Math.min(endIndex, projects.length)} of {projects.length} projects
+                </div>
+
+                <button
+                    onClick={goToNext}
+                    disabled={currentPage === totalPages}
+                    className={`flex items-center gap-2 font-medium transition-colors ${
+                        currentPage === totalPages 
+                            ? 'text-gray-400 cursor-not-allowed' 
+                            : 'text-orange-500 hover:text-orange-600 cursor-pointer'
+                    }`}
+                >
+                    Next
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
             </div>
-
-            <button
-                onClick={goToNext}
-                disabled={currentPage === totalPages}
-                className={`flex items-center gap-2 font-medium transition-colors ${
-                    currentPage === totalPages 
-                        ? 'text-gray-400 cursor-not-allowed' 
-                        : 'text-orange-500 hover:text-orange-600 cursor-pointer'  // ← Added cursor-pointer
-                }`}
-            >
-                Next
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-            </button>
-        </div>
+        </ScrollAnimationWrapper>
         </div>
     </div>
     );

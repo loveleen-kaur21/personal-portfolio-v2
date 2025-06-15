@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+    <main className="flex flex-col items-center justify-center p-24" style={{minHeight: 'calc(100vh - 80px)'}}>
       <div className="flex flex-col items-center justify-center text-center">
         <h2 className="text-2xl text-gray-600 mb-8">Let&apos;s build something together.</h2>
         <h1 className="text-5xl md:text-6xl font-light text-white mb-6">
